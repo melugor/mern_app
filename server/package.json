@@ -1,0 +1,14 @@
+{
+  "name": "web-personal-api",
+  "version": "0.0.1",
+  "description": "api web personal",
+  "main": "index.js",
+  "author": "Mart",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^8.5.0"
+  },
+  "devDependencies": {
+    "yarn": "^1.22.22"
+  }
+}
