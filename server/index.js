@@ -14,7 +14,7 @@ mongoose.connect(
 
         app.listen(PORT, () => {
             console.log("#############################")
-            console.log("###    MERN   API   REST  ###")
+            console.log("###        PROBANDO 3     ###")
             console.log("#############################")
             console.log(`http://${IP_SERVER}:${PORT}/api/${API_VERSION}`)
         }
