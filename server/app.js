@@ -6,7 +6,7 @@ const {API_VERSION} = require ("./constants")
 const app = express()
 
 // Importar rutas
-const authRoutes = require("../router/auth.router")
+const authRoutes = require("./router/auth.router")
 
 //Configurar Body Parse
 app.use(bodyParser.urlencoded({ extended: true}))

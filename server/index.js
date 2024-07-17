@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const app = require("./app.js")
-const {DB_USER,DB_PASSWORD,DB_HOST,API_VERSION,IP_SERVER}= require("./constants.js")
+const {DB_USER,DB_PASSWORD,DB_HOST,API_VERSION,IP_SERVER}= require('./constants.js')
 
 
 const PORT = process.env.POST || 3000
@@ -14,7 +14,7 @@ mongoose.connect(
 
         app.listen(PORT, () => {
             console.log("#############################")
-            console.log("###        PROBANDO b     ###")
+            console.log("###        PROBANDO 2     ###")
             console.log("#############################")
             console.log(`http://${IP_SERVER}:${PORT}/api/${API_VERSION}`)
         }
