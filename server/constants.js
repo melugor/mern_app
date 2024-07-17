@@ -1,5 +1,5 @@
 const DB_USER= "melugor"
-const DB_PASSWORD = "Kt92oCHwsEf3clYU"
+const DB_PASSWORD = "martinLugo"
 const DB_HOST = "web-personal-api.khhpkau.mongodb.net"
 
 const API_VERSION = "v1"

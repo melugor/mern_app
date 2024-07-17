@@ -1,7 +1,7 @@
 {
-  "name": "prueba",
+  "name": "web-personal-api",
   "version": "0.0.1",
-  "description": "api web personal",
+  "description": "API WEB Personal",
   "main": "index.js",
   "author": "Martin",
   "license": "MIT",
