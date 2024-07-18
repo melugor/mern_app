@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require("body-parser")
 const cors = require("cors")
-const {API_VERSION} = require ("./constants")
+const {API_VERSION} = require ("../constants")
 
 const app = express()
 
@@ -20,6 +20,5 @@ app.use(cors())
 
 //Configurar Rutas 
 app.use(`/api/${API_VERSION}`, authRoutes)
-
 
 module.exports = app
