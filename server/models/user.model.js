@@ -25,4 +25,4 @@ const UserSchema = mongoose.Schema({
         avatar: String, 
 }) 
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model("User", UserSchema)

@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const {JWT_SECRET_KEY} = require("../constants")
+const {JWT_SECRET_KEY} = require('../constants')
 
 function createAccessToken(user){
     const expirationToken = new Date()
