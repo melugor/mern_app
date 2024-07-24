@@ -32,16 +32,17 @@ function register(req, res) {
 }
 
 function login(req, res) {
-    const { email, password } = req.body;
+    const { email, password } = req.body
+    console.log(req.body);
        
-    if (!email) return res.status(400).send({ msg: "El email es obligatorio" });
-    if (!password) return res.status(400).send({ msg: "La contraseña es obligatoria" });
+    if (!email)  res.status(400).send({ msg: "El email es obligatorio" });
+    if (!password)  res.status(400).send({ msg: "La contraseña es obligatoria" });
 
     const emailLowerCase = email.toLowerCase();
 
     User.findOne({ email: emailLowerCase }, (error, userStore) => {
         if (error) {
-            return res.status(500).send({ msg: "Error del servidor" });
+             res.status(500).send({ msg: "Error del servidor" });
         } else{
             bcrypt.compare(password, userStore.password, (bcryptError, check) => {
                 if(bcryptError){
@@ -51,26 +52,30 @@ function login(req, res) {
                 }  else if (!userStore.active){
                     res.status(401).send({ msg: "usuario no autorizado o no activo" })
                 }else{
-                    res.status(200).send({ msg: "Login ok" })
+                    res.status(200).send({ 
+                        access: jwt.createAccessToken(userStore),
+                        refresh: jwt.createRefreshToken(userStore)
+                     })
                 }})}})}
             
-        
-        if (!userStore) {
-            return res.status(404).send({ msg: "Usuario no encontrado" });
-        }
-        
-        // Aquí debes agregar la lógica para comparar la contraseña
-        const isMatch = bcrypt.compareSync(password, userStore.password);
-        if (!isMatch) {
-            return res.status(401).send({ msg: "Contraseña incorrecta" });
-        }
+function refreshAccessToken(req, res) {
+    const { token } = req.body
 
-        // Si todo está bien, puedes generar un token o enviar una respuesta adecuada
-        const token = jwt.sign({ id: userStore._id }, "tu_secreto_aqui"); // Asegúrate de tener un secreto
-        return res.status(200).send({ token });
+    if(!token) res.status(400).send({msg: "Error token requerido"})
+
+    const {user_id} = jwt.decoded(token)
     
-
+    User.findOne({ _id: user_id }, (error, userStorage) => {
+        if(error){
+            res.status(500).send({ msg: "Error del servidor" })
+        }else{
+            res.status(200).send({ 
+                accessToken: jwt.createAccessToken(userStorage)
+        })
+    }}
+)}
 module.exports = {
     register,
-    login
+    login,
+    refreshAccessToken,
 };
