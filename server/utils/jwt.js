@@ -15,7 +15,7 @@ function createAccessToken(user){
 }
 function createRefreshToken(user){
     const expirationToken = new Date()
-    expirationToken.getMonth(expirationToken.getMonth() + 1)
+    expirationToken.setMonth(expirationToken.getMonth() + 1)
 
     const payload = {
         token_type:"refresh",
