@@ -54,8 +54,36 @@ function updatePost(req, res){
     })
 }
 
+function deletePost(req, res){
+    const { id } = req.params
+    
+    Post.findByIdAndDelete( id, (error)=>{
+        if(error) {
+            res.status(400).send({msg: "Error al eliminar el post !"})
+        }else {
+            res.status(200).send({msg: "Post eliminado"})
+        }
+    })
+}
+
+
+function getPost(req, res) {
+    const { path } = req.params
+    
+    Post.findOne({ path }, (error, postStored) => {
+        if(error){
+            res.status(500).send({ msg: "Error del servidor" })
+        }else if (!postStored){
+            res.status(400).send({ msg: "no se ha encontrado ningun post"})
+        }else {
+        res.status(400).send(postStored)
+}}
+)}
+
 module.exports= {
     createPost,
     getPost,
     updatePost,
+    deletePost,
+    getPost,
 }
