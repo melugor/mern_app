@@ -35,7 +35,21 @@ function getEmails(req, res){
     })
 }
 
+function deleteEmail(req, res){
+    const { id } = req.params
+    
+    Newsletter.findByIdAndDelete( id, (error)=>{
+        if(error) {
+            res.status(400).send({msg: "Error al eliminar el registro !"})
+        }else {
+            res.status(200).send({msg: "Eliminacioonn correcta del registro"})
+        }
+    })
+}
+
 module.exports = {
     suscribeEmail,
     getEmails,
+    getEmails,
+    deleteEmail,
 }
