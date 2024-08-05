@@ -30,7 +30,7 @@ async function getUsers(req, res){
 
 }
 
-async function createUser(req, res){
+async function createUser(req, res) {
 
     const { password } = req.body
     const user = new User({...req.body, active: false })
